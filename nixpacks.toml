@@ -2,10 +2,17 @@
 nixpkgs = ["php", "php.packages.composer", "nginx", "libmysqlclient"]
 
 [phases.install]
-cmds = ["composer install --no-interaction --prefer-dist --optimize-autoloader"]
+cmds = [
+  "composer install --no-interaction --prefer-dist --optimize-autoloader"
+]
 
 [phases.build]
-cmds = ["php artisan config:cache", "php artisan route:cache", "php artisan migrate --force"]
+cmds = [
+  "php artisan session:table",
+  "php artisan migrate --force",
+  "php artisan config:cache",
+  "php artisan route:cache"
+]
 
 [start]
 cmd = "php artisan serve --host=0.0.0.0 --port=8000"
