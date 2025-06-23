@@ -11,5 +11,5 @@ Route::get('/test_laravel_api', function () {
         "password" => bcrypt("password"),
     ]);
     $user->save();
-    return "api is working well ";
+    return "the user has been created successfully" . $user->name;
 });
